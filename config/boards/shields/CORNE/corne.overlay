@@ -1,23 +1,26 @@
 / {
     chosen {
-        zmk,keyboard = &keyboard;
+        zmk,keyboard = &default_kscan;
     };
 
     // This enables split behavior
-    zmk,split-role = "left";  // change to "right" for the other half
-};
+    //zmk,split-role = "left";  // change to "right" for the other half
 
-&kscan0 {
-    row-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>,
-                <&gpio0 24 GPIO_ACTIVE_LOW>,
-                <&gpio0 100 GPIO_ACTIVE_LOW>,
-                <&gpio0 11 GPIO_ACTIVE_LOW>;
-    col-gpios = <&gpio0 31 GPIO_ACTIVE_LOW>,
-                <&gpio0 29 GPIO_ACTIVE_LOW>,
-                <&gpio0 2 GPIO_ACTIVE_LOW>,
-                <&gpio0 115 GPIO_ACTIVE_LOW>,
-                <&gpio0 113 GPIO_ACTIVE_LOW>,
-                <&gpio0 111 GPIO_ACTIVE_LOW>;
-    debounce-press-ms = <5>;
-    debounce-release-ms = <5>;
+
+    default_kscan: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        label = "default_kscan";
+
+        input-gpio = 
+            <&pro_micro 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 100 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 115 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 113 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+            <&pro_micro 111(GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+    };
 };
