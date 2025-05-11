@@ -1,0 +1,55 @@
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+  behaviors {
+    bt_sel_0: bt_sel_0 {
+      compatible = "zmk,behavior-bluetooth-select";
+      label = "BT 0";
+      bt_index = <0>;
+    };
+    bt_sel_1: bt_sel_1 {
+      compatible = "zmk,behavior-bluetooth-select";
+      label = "BT 1";
+      bt_index = <1>;
+    };
+    bt_sel_2: bt_sel_2 {
+      compatible = "zmk,behavior-bluetooth-select";
+      label = "BT 2";
+      bt_index = <2>;
+    };
+    bt_sel_3: bt_sel_3 {
+      compatible = "zmk,behavior-bluetooth-select";
+      label = "BT 3";
+      bt_index = <3>;
+    };
+    bt_clear: bt_clear {
+      compatible = "zmk,behavior-bluetooth-clear-bonds";
+      label = "BT CLR";
+    };
+  };
+};
+
+
+/ {
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+      bindings = <
+        &kp ESC     &kp Q     &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp MINUS
+        &kp DEL     &kp A     &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SCLN  &kp QUOT
+        &kp LSFT    &kp Z     &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp SLASH &kp RSFT
+        &kp LCTL    &mo 1     &kp SPC   &kp ENTER &kp BSPC  &mo 1
+      >;
+    };
+
+    layer_1 {
+      bindings = <
+        &kp ESC     &kp 1     &kp 2     &kp 3     &kp 4     &kp 5     &kp 6     &kp 7     &kp 8     &kp 9     &kp 0     &kp BSPC
+        &kp TAB     &kp LALT  &kp MPLY  &kp VOLU  &kp VOLD  &kp MUTE  &none     &kp LEFT  &kp UP    &kp DOWN  &kp RIGHT &caps_word
+        &kp LSFT    &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_clear &boot     &boot     &none     &kp LBKT  &kp RBKT  &kp BSLS  &kp RSFT
+        &kp LCTL    &trans    &kp SPC   &kp ENTER &kp BSPC  &trans
+      >;
+    };
+  };
+};
